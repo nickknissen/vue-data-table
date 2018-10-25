@@ -1,26 +1,24 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { storiesOf } from '@storybook/vue';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
 
-import MyButton from '../components/MyButton.vue';
+import SortExample from '../examples/DataTableSort.vue';
+import InitialDataExample from '../examples/DataTableInitialData.vue';
 import '../assets/main.pcss';
 
-storiesOf('Button', module)
-  .add('with text', () => ({
-    components: { MyButton },
-    template: '<my-button @click="action">Hello Button</my-button>',
-    methods: { action: action('clicked') },
-  }))
-  .add('with JSX', () => ({
-    components: { MyButton },
-    render() {
-      return <my-button onClick={this.action}>With JSX</my-button>;
-    },
-    methods: { action: linkTo('Button', 'with some emoji') },
-  }))
-  .add('with some emoji', () => ({
-    components: { MyButton },
-    template: '<my-button @click="action">😀 😎 👍 💯</my-button>',
-    methods: { action: action('clicked') },
-  }));
+
+storiesOf('DataTable', module)
+  .add(
+    'sorting',
+    () => ({
+      components: { SortExample },
+      template: '<sort-example />',
+    }),
+    { info: '☹️ no emojis' }, // Add additional info text directly
+  )
+  .add(
+    'preloaded with initial data',
+    () => ({
+      components: { InitialDataExample },
+      template: '<initial-data-example />',
+    }),
+  );
