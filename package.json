@@ -11,6 +11,7 @@
     "build:storybook": "vue-cli-service build:storybook -c config/storybook"
   },
   "dependencies": {
+    "qs": "^6.5.2",
     "vue": "^2.5.17"
   },
   "devDependencies": {
