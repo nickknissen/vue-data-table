@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import MyButton from '../components/MyButton.vue';
+import '../assets/main.pcss';
 
 storiesOf('Button', module)
   .add('with text', () => ({
