@@ -47,10 +47,13 @@ export default {
     fetcher: { required: true, type: Function },
     query: { default: () => ({}), type: Object },
     initialData: { default: null, type: Object },
-    pageSize: { default: 15, type: Number },
     debounceMs: { default: 500, type: Number },
     useQueryString: { default: true, type: Boolean },
     tableStyles: { default: '', type: String },
+
+    pageNumberKey: { default: 'page' },
+    pageSizeKey: { default: 'pageSize' },
+    totalCountKey: { default: 'totalCount' },
   },
   data: () => ({
     loaded: false,
@@ -62,8 +65,13 @@ export default {
   computed: {
     paginator() {
       const pageCount = this.pageSize ? Math.ceil(this.totalCount / this.pageSize) : 1;
-      const currentPage = this.query.page;
-      return range(pageCount).map(number => ({ number, active: number === currentPage }));
+      return range(pageCount).map(number => ({ number, isActive: number === this.pageNumber }));
+    },
+    pageNumber() {
+      return this.query[this.pageNumberKey];
+    },
+    pageSize() {
+      return this.query[this.pageSizeKey];
     },
     isAllChecked() {
       return this.selectedData.length === this.visibleData.length;
@@ -105,7 +113,7 @@ export default {
   methods: {
     hydrateWithInitialData() {
       this.visibleData = this.initialData.data;
-      this.totalCount = this.initialData.total || this.initialData.data.length;
+      this.totalCount = this.initialData[this.totalCountKey] || this.initialData.data.length;
     },
     refreshData() {
       this.getVisibleData(this.query);
@@ -121,7 +129,7 @@ export default {
         queryString: toQueryString(query),
       }).then((response) => {
         this.visibleData = response.data;
-        this.totalCount = response.total || response.data.length;
+        this.totalCount = response[this.totalCountKey] || response.data.length;
         this.loaded = true;
       });
     },
