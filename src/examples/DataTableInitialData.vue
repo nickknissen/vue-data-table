@@ -3,7 +3,6 @@
   <data-table
     :fetcher="getData"
     :initial-data="initialData"
-    :use-query-string="false"
     table-styles="w-full"
     >
       <template slot="actions" slot-scope="{ refreshData }">

@@ -3,7 +3,6 @@
   <data-table
     :fetcher="getData"
     :query.sync="query"
-    :use-query-string="false"
     table-styles="w-full"
     >
       <template slot="columns" slot-scope="{isSorted, isSortedDesc, isSortedAsc, toggleSort}">

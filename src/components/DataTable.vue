@@ -41,7 +41,7 @@ export default {
     query: { default: () => ({}), type: Object },
     initialData: { default: null, type: Object },
     debounceMs: { default: 500, type: Number },
-    useQueryString: { default: true, type: Boolean },
+    useQueryString: { default: false, type: Boolean },
     tableStyles: { default: '', type: String },
 
     pageNumberKey: { default: 'page' },
