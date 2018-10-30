@@ -6,7 +6,7 @@
     :use-query-string="false"
     table-styles="w-full"
     >
-      <template slot="filters" slot-scope="{ refreshData }">
+      <template slot="actions" slot-scope="{ refreshData }">
         <div class="w-full flex justify-end">
           <button class="bg-teal-dark text-white py-4 px-2 mb-2" @click="refreshData">
             Refresh data

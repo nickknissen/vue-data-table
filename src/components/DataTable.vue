@@ -1,15 +1,10 @@
 <template>
   <div>
-    <div class="flex justify-between items-center flex-col md:flex-row">
-      <slot name="actions"
-        :hasSelectedData="selectedData.length >= 1"
-        :selectedData="selectedData" />
-      <slot name="filters"
-        :filter="query.filter"
-        :refreshData="refreshData"
-        :resetFilter="resetFilter"
-        :loading="!loaded && !initialLoad"/>
-    </div>
+    <slot name="actions"
+      :hasSelectedData="selectedData.length >= 1"
+      :selectedData="selectedData"
+      :refreshData="refreshData"
+      :loading="!loaded && !initialLoad"/>
     <table :class="this.tableStyles">
       <thead>
         <slot name="columns"
@@ -18,7 +13,6 @@
           :toggleSort="toggleSort"
           :isSortedAsc="isSortedAsc"
           :isSortedDesc="isSortedDesc"
-          :filter="query.filter"
           :isSorted="isSorted" />
       </thead>
       <tbody :style="[!loaded ? 'opacity: .5': '']">
@@ -26,8 +20,7 @@
           <slot
             :row="item"
             :toggleSelection="toggleSelection"
-            :isChecked="isChecked"
-            :filter="query.filter"/>
+            :isChecked="isChecked"/>
         </tr>
       </tbody>
     </table>
@@ -193,9 +186,6 @@ export default {
     },
     isSorted(column) {
       return this.query.sort === column || this.query.sort === `-${column}`;
-    },
-    resetFilter() {
-      this.query.filter = { ...this.defaultFilter };
     },
   },
 };
