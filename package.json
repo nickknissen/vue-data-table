@@ -11,11 +11,13 @@
     "build:storybook": "vue-cli-service build:storybook -c config/storybook"
   },
   "dependencies": {
+    "qs": "^6.5.2",
     "vue": "^2.5.17"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "4.0.0-alpha.20",
-    "@storybook/addon-links": "4.0.0-alpha.20",
+    "@storybook/addon-actions": "4.0.0",
+    "@storybook/addon-info": "^4.0.0",
+    "@storybook/addon-links": "4.0.0",
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-plugin-unit-jest": "^3.0.3",
